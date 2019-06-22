@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/tracker-graph",
-  "version": "1.72.5-master",
+  "version": "1.70.0-graph-setup-prod",
   "description": "Base for modules in node.",
   "main": "./dist/index.js",
   "repository": "github.com:vicjicaman/tracker-graph.git",
