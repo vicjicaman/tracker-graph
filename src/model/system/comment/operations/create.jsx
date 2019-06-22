@@ -10,7 +10,7 @@ export const create = async (info, {
 }, cxt) => {
   const {parent, parent: {
       namespace
-    }, params} = info;
+    }, mapper} = info;
 
   const operation = async (cxt) => {
 
@@ -36,7 +36,7 @@ export const create = async (info, {
   };
 
   return await OperationApi.start(parent, {
-    params
+    mapper
   }, operation, cxt);
 
 }

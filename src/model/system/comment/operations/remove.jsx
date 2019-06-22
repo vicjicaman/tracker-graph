@@ -12,7 +12,7 @@ export const remove = async (info, {}, cxt) => {
       parent: {
         namespace
       },
-      params
+      mapper
     }
   } = info;
 
@@ -41,7 +41,7 @@ export const remove = async (info, {}, cxt) => {
   };
 
   return await OperationApi.start(parent, {
-    params
+    mapper
   }, operation, cxt);
 
 }

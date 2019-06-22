@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import * as IssueModel from 'Model/root/workspace/namespace/issue'
+import * as IssueOperation from 'Model/root/workspace/namespace/issue/operations'
 
 const schema = [`
 
