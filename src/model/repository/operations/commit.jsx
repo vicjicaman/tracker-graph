@@ -1,5 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitSync from 'Api/git/sync'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 import {changes} from './utils'
 
 export const commit = async (repository, {
@@ -12,7 +12,7 @@ export const commit = async (repository, {
 
   const operation = async (cxt) => {
 
-    await GitSync.commit(repository.repositoryid, {
+    await GitApi.Sync.commit(repository.repositoryid, {
       message: input
         ? input.subject + "\n" + input.message
         : "-"

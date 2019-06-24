@@ -1,6 +1,6 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as CommentApi from 'Api/namespace/system/comment'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 import * as EntityOpsModel from 'Model/namespace/entity/operations'
 
@@ -31,7 +31,7 @@ export const remove = async (info, {}, cxt) => {
         }
       } = comment;
 
-      await GitFiles.stage(namespace.repositoryid, {
+      await GitApi.Files.stage(namespace.repositoryid, {
         fileid
       }, cxt);
 

@@ -1,7 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitSync from 'Api/git/sync'
-import * as GitCommitApi from 'Api/git/commits'
-import * as GitCommitFilesApi from 'Api/git/commits/files'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const fetch = async (repository, {
   operation: {
@@ -13,15 +11,15 @@ export const fetch = async (repository, {
   const operation = async (cxt) => {
     const {repositoryid, branchid} = repository;
 
-    /*const previousid = await GitCommitApi.current(repositoryid, {
+    /*const previousid = await GitApi.Commits.current(repositoryid, {
       branchid
     }, cxt);*/
 
-    await GitSync.fetch(repositoryid, {
+    await GitApi.Sync.fetch(repositoryid, {
       branchid
     }, cxt);
 /*
-    const res = await GitCommitFilesApi.list(repositoryid, {
+    const res = await GitApi.Commits.Files.list(repositoryid, {
       commitid: previousid
     }, cxt);
 */

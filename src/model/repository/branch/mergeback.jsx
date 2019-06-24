@@ -1,10 +1,10 @@
 import _ from "lodash";
-import * as GitBranchApi from 'Api/git/branches'
+import * as GitApi from '@nebulario/tracker-git'
 import {get} from './commit'
 
 export const mergeback = async (branch, {}, cxt) => {
   const {branchid, baselineid, repository} = branch;
-  const mergeback = await GitBranchApi.Summary.mergeback(repository.repositoryid, {
+  const mergeback = await GitApi.Branches.Summary.mergeback(repository.repositoryid, {
     branchid,
     baselineid
   }, cxt);

@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/tracker-graph",
-  "version": "1.70.0-master",
+  "version": "1.70.1-master",
   "description": "Base for modules in node.",
   "main": "./dist/index.js",
   "repository": "github.com:vicjicaman/tracker-graph.git",
@@ -53,6 +53,11 @@
   "dependencies": {
     "@nebulario/tracker-node": "1.70.0-master",
     "@nebulario/tracker-process": "1.70.0-master",
+    "@nebulario/tracker-git": "1.70.0-master",
+    "@nebulario/tracker-events": "1.70.0-master",
+    "@nebulario/tracker-stream": "1.70.0-master",
+    "@nebulario/tracker-operation": "1.70.0-master",
+    "@nebulario/tracker-ping": "1.70.0-master",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "dotenv": "^6.2.0",

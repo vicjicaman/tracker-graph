@@ -1,4 +1,4 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as WorkspaceApi from 'Api/root/workspace'
 import * as RepositoryModel from 'Model/repository'
 import {get as getWorkspace} from '../query'

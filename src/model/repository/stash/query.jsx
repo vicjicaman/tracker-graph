@@ -1,5 +1,5 @@
 import _ from "lodash";
-import * as GitStashApi from 'Api/git/stashes'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const prepare = (repository, {stashid, message: raw}) => {
 
@@ -41,6 +41,6 @@ export const get = async (repository, {
 export const list = async (repository, {}, cxt) => {
   const {repositoryid} = repository;
 
-  const res = await GitStashApi.list(repositoryid, {}, cxt);
+  const res = await GitApi.Stash.list(repositoryid, {}, cxt);
   return _.map(res, raw => prepare(repository, raw), cxt)
 }

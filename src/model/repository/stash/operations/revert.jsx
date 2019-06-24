@@ -1,4 +1,4 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import {revert as RepositoryRevert} from '../revert'
 
 export const revert = async (stash, {

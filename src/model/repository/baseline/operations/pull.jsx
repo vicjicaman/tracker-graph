@@ -1,5 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitSync from 'Api/git/sync'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const pull = async (repository, {
   operation: {
@@ -10,7 +10,7 @@ export const pull = async (repository, {
 
   const operation = async (cxt) => {
     const {repositoryid, baselineid} = repository;
-    await GitSync.fetcher(repositoryid, {
+    await GitApi.Sync.fetcher(repositoryid, {
       branchid: baselineid
     }, cxt);
   };

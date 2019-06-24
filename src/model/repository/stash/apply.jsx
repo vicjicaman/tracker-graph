@@ -1,4 +1,4 @@
-import * as GitStash from 'Api/git/stashes'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const apply = async (stash, {}, cxt) => {
 
@@ -6,7 +6,7 @@ export const apply = async (stash, {}, cxt) => {
       repositoryid
     }} = stash;
 
-  return await GitStash.apply(repositoryid, {
+  return await GitApi.Stash.apply(repositoryid, {
     stashid
   }, cxt);
 

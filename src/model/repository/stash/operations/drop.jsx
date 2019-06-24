@@ -1,4 +1,4 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import {drop as RepositoryDrop} from '../drop'
 
 export const drop = async (stash, {

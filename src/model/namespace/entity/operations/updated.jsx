@@ -1,5 +1,5 @@
 import * as EntityApi from 'Api/utils/entity'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const updated = async (object, {}, cxt) => {
   const {entity, namespace} = object;
@@ -14,7 +14,7 @@ export const updated = async (object, {}, cxt) => {
     }
   } = entity;
 
-  await GitFiles.stage(namespace.repositoryid, {
+  await GitApi.Files.stage(namespace.repositoryid, {
     fileid
   }, cxt);
 

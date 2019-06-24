@@ -1,7 +1,7 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as IssueApi from 'Api/namespace/issue'
-import * as Git from 'Api/git'
-import * as GitFiles from 'Api/git/files'
+import * as Git from '@nebulario/tracker-git'
+import * as GitApi from '@nebulario/tracker-git'
 import * as WorkspaceModel from 'Model/root/workspace'
 
 export const create = async (namespace, {
@@ -25,7 +25,7 @@ export const create = async (namespace, {
       }
     } = issue;
 
-    await GitFiles.stage(repositoryid, {
+    await GitApi.Files.stage(repositoryid, {
       fileid
     }, cxt);
 

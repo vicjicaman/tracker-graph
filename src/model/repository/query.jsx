@@ -1,8 +1,5 @@
 import _ from "lodash";
-import * as GitApi from 'Api/git'
-import * as GitCommitApi from 'Api/git/commits'
-import * as GitBranchApi from 'Api/git/branches'
-import * as GitFilesApi from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 import fs from 'fs'
 import {getRootPaths} from 'Api/utils/path'
 
@@ -18,10 +15,10 @@ export const get = async (repo, {}, cxt) => {
   if (!exists) {
     status = "repository:" + repositoryid.replace(cxt.workspace, "")
   } else {
-    info.branchid = await GitBranchApi.Query.current(repositoryid, {}, cxt);
+    info.branchid = await GitApi.Branches.Query.current(repositoryid, {}, cxt);
     info.url = await GitApi.Query.url(repositoryid, {}, cxt);
     info.merging = GitApi.Query.merging(repositoryid, {}, cxt);
-    info.files = await GitFilesApi.list(repositoryid, {}, cxt);
+    info.files = await GitApi.Files.list(repositoryid, {}, cxt);
 
     if (info.branchid !== branchid) {
       status = "branch:" + info.branchid;

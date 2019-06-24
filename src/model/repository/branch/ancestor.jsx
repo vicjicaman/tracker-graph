@@ -1,10 +1,10 @@
 import _ from "lodash";
-import * as GitBranchApi from 'Api/git/branches'
+import * as GitApi from '@nebulario/tracker-git'
 import {get} from './commit'
 
 export const ancestor = async (branch, {}, cxt) => {
   const {branchid, baselineid, repository} = branch;
-  const ancestor = await GitBranchApi.Summary.ancestor(repository.repositoryid, {
+  const ancestor = await GitApi.Branches.Summary.ancestor(repository.repositoryid, {
     branchid,
     baselineid
   }, cxt);

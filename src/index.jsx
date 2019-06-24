@@ -23,9 +23,9 @@ import * as Cache from 'Utils/cache'
 import {
   getRootPaths
 } from 'Api/utils/path'
-import * as GitApiExecCache from 'Api/git/exec';
-import * as EventApi from 'Api/system/events';
-import * as PingApi from 'Api/system/ping';
+import * as GitApi from '@nebulario/tracker-git';
+import * as EventApi from '@nebulario/tracker-events';
+import * as PingApi from '@nebulario/tracker-ping';
 
 import * as Utils from './utils';
 import * as Exception from './utils/exception';
@@ -128,12 +128,12 @@ global.FlowError = Exception.FlowError;
     });
     graphqlHTTPHandler(req, res).then(() => {
       const exeid = req.id;
-      GitApiExecCache.clearExecutionCache(exeid);
+      GitApi.Exec.clearExecutionCache(exeid);
       Cache.clearHash(exeid);
       next();
     }).catch((e) => {
       const exeid = req.id;
-      GitApiExecCache.clearExecutionCache(exeid);
+      GitApi.Exec.clearExecutionCache(exeid);
       Cache.clearHash(exeid);
       next(e);
     });

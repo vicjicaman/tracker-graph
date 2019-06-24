@@ -1,5 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitMergesApi from 'Api/git/merges'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 import {
   changes
 } from 'Model/repository/operations/utils'
@@ -18,7 +18,7 @@ export const merge = async (repository, {}, cxt) => {
 
   const operation = async (cxt) => {
 
-    const summary = await GitMergesApi.summary(repositoryid, {
+    const summary = await GitApi.Merges.summary(repositoryid, {
       merging,
       changes: files,
       branchid,
@@ -33,7 +33,7 @@ export const merge = async (repository, {}, cxt) => {
       } = summary;
 
       if (status === "MERGE_INDIRECT" || status === "MERGE_DIRECT") {
-        await GitMergesApi.merge(repositoryid, {
+        await GitApi.Merges.merge(repositoryid, {
           sourceid: branchid,
           destid: branchid,
           origin: true,
@@ -42,7 +42,7 @@ export const merge = async (repository, {}, cxt) => {
       }
 
       if (status === "MERGE_CONFLICT") {
-        await GitMergesApi.merge(repositoryid, {
+        await GitApi.Merges.merge(repositoryid, {
           sourceid: branchid,
           destid: branchid,
           origin: true,

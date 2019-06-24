@@ -1,7 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitSync from 'Api/git/sync'
-import * as GitFiles from 'Api/git/files'
-import * as GitBranchApi from 'Api/git/branches'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const reset = async (repository, {
   operation: {
@@ -13,13 +11,13 @@ export const reset = async (repository, {
   const operation = async (cxt) => {
     const {repositoryid, branchid} = repository;
 
-    const {status} = await GitBranchApi.Summary.summary(repositoryid, {
+    const {status} = await GitApi.Branches.Summary.summary(repositoryid, {
       branchid
     }, cxt);
 
     if (status === "NEED_PUSH" || status === "DIVERGED") {
-      await GitSync.reset(repositoryid, {}, cxt);
-      await GitFiles.stage(repositoryid, {
+      await GitApi.Sync.reset(repositoryid, {}, cxt);
+      await GitApi.Files.stage(repositoryid, {
         fileid: "."
       }, cxt);
     }

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import * as GitStashFilesApi from 'Api/git/stashes/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const prepare = (stash, {fileid, status, paths}) => ({
   id: stash.id + "_" + fileid,
@@ -15,7 +15,7 @@ export const list = async (stash, {}, cxt) => {
       repositoryid
     }} = stash;
 
-  const res = await GitStashFilesApi.list(repositoryid, {
+  const res = await GitApi.Stash.Files.list(repositoryid, {
     stashid
   }, cxt);
 
@@ -28,7 +28,7 @@ export const diffs = async (stash, {}, cxt) => {
       repositoryid
     }} = stash;
 
-  const res = await GitStashFilesApi.diffs(repositoryid, {
+  const res = await GitApi.Stash.Files.diffs(repositoryid, {
     stashid
   }, cxt);
 
@@ -52,7 +52,7 @@ export const content = async (file, {}, cxt) => {
     }
   } = file;
 
-  return await GitStashFilesApi.content(repositoryid, {
+  return await GitApi.Stash.Files.content(repositoryid, {
     fileid,
     stashid
   }, cxt);

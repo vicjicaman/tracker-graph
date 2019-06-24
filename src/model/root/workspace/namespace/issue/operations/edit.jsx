@@ -1,6 +1,6 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as IssueApi from 'Api/namespace/issue'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 import * as IssueModel from 'Model/root/workspace/namespace/issue'
 
 export const edit = async (issue, {
@@ -26,7 +26,7 @@ export const edit = async (issue, {
     const res = await IssueApi.update.general(issue.entity, input, cxt);
 
     if (res) {
-      await GitFiles.stage(repositoryid, {
+      await GitApi.Files.stage(repositoryid, {
         fileid
       }, cxt);
     }

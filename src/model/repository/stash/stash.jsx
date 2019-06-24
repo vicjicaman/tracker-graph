@@ -1,4 +1,4 @@
-import * as GitStash from 'Api/git/stashes'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const stash = async (repository, {
   groupid,
@@ -11,7 +11,7 @@ export const stash = async (repository, {
     message
   };
 
-  await GitStash.stash(repositoryid, {
+  await GitApi.Stash.stash(repositoryid, {
     message: JSON.stringify(payload).replace(/"/g, '\\"')
   }, cxt);
 }
