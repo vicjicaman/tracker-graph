@@ -1,7 +1,7 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as EntityModel from 'Model/namespace/entity'
 import * as IssueApi from 'Api/namespace/issue'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 import * as IssueModel from 'Model/root/workspace/namespace/issue'
 
 export const remove = async (issue, {}, cxt) => {
@@ -27,7 +27,7 @@ export const remove = async (issue, {}, cxt) => {
       ignore: false
     }, cxt);
 
-    await GitFiles.stage(repositoryid, {
+    await GitApi.Files.stage(repositoryid, {
       fileid
     }, cxt);
 

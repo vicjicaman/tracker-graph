@@ -1,11 +1,10 @@
-import * as GitCommitApi from 'Api/git/commits'
+import * as GitApi from '@nebulario/tracker-git'
 import _ from "lodash";
-import * as GitMergesApi from 'Api/git/merges'
 
 export const get = async (repository, {}, cxt) => {
 
   return repository.info.merging
-    ? await GitCommitApi.get(repository.repositoryid, {
+    ? await GitApi.Commits.get(repository.repositoryid, {
       commitid: repository.info.merging
     }, cxt)
     : null
@@ -26,7 +25,7 @@ export const summary = async (branch, {
     }
   } = branch;
 
-  const summary = await GitMergesApi.summary(repositoryid, {
+  const summary = await GitApi.Merges.summary(repositoryid, {
     merging,
     changes: files,
     branchid,

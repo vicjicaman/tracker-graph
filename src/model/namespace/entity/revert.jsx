@@ -1,6 +1,4 @@
-import * as GitApi from 'Api/git'
-import * as GitCommitFilesApi from 'Api/git/commits/files'
-import * as GitFilesApi from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 import {summary} from './query'
 import fs from 'fs'
 
@@ -22,12 +20,12 @@ export const revert = async (obj, {}, cxt) => {
     }
   } = obj;
 
-  const rev = await GitCommitFilesApi.revision(repositoryid, {
+  const rev = await GitApi.Commits.Files.revision(repositoryid, {
     fileid
   }, cxt);
 
   if (rev) {
-    await GitFilesApi.checkout(repositoryid, {
+    await GitApi.Files.checkout(repositoryid, {
       fileid,
       commitid: "HEAD"
     }, cxt);
@@ -35,7 +33,7 @@ export const revert = async (obj, {}, cxt) => {
     fs.unlinkSync(absFileid);
   }
 
-  await GitFilesApi.stage(repositoryid, {
+  await GitApi.Files.stage(repositoryid, {
     fileid
   }, cxt);
 

@@ -1,6 +1,4 @@
-import * as GitApi from 'Api/git'
-import * as GitCommit from 'Api/git/commits'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 const summary = async (namespace, {
   branchid,
@@ -19,17 +17,17 @@ const summary = async (namespace, {
     }
   } = object;
 
-  const diffs = await GitFiles.diffs(repositoryid, {
+  const diffs = await GitApi.Files.diffs(repositoryid, {
     fileid
   }, cxt);
 
-  const commitid = await GitFiles.commit(repositoryid, {
+  const commitid = await GitApi.Files.commit(repositoryid, {
     fileid,
     branchid
   }, cxt);
 
   const branches = commitid
-    ? await GitCommit.branches(repositoryid, {
+    ? await GitApi.Commits.branches(repositoryid, {
       commitid
     }, cxt)
     : [];
@@ -46,7 +44,7 @@ const summary = async (namespace, {
 }
 
 export const branch = async (object, {}, cxt) => {
-  
+
   const {namespace, namespace: {
       branchid
     }} = object;

@@ -1,5 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitSync from 'Api/git/sync'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const abort = async (repository, {
   operation: {
@@ -10,7 +10,7 @@ export const abort = async (repository, {
 
   const operation = async (cxt) => {
     const {repositoryid, branchid} = repository;
-    await GitSync.abort(repositoryid, {}, cxt);
+    await GitApi.Sync.abort(repositoryid, {}, cxt);
   };
 
   return await OperationApi.start(parent, {

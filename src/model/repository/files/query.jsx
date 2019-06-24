@@ -1,6 +1,5 @@
 import _ from "lodash";
-import * as GitCommitFilesApi from 'Api/git/commits/files'
-import * as GitFilesApi from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 import fs from 'fs'
 
 const prepare = (repository, file) => ({
@@ -43,7 +42,7 @@ export const previous = async (file, {}, cxt) => {
     }
   } = file;
 
-  return await GitCommitFilesApi.revision(repository.repositoryid, {
+  return await GitApi.Commits.Files.revision(repository.repositoryid, {
     fileid,
     branchid,
     commitid: "HEAD"

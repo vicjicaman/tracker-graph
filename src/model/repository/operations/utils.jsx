@@ -1,24 +1,23 @@
-import * as GitCommitApi from 'Api/git/commits'
-import * as GitCommitFilesApi from 'Api/git/commits/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const changes = async (repository, {}, cxt) => {
   const {repositoryid, branchid} = repository;
-  const commitid = await GitCommitApi.current(repositoryid, {
+  const commitid = await GitApi.Commits.current(repositoryid, {
     branchid
   }, cxt);
 
-  const commit = await GitCommitApi.get(repositoryid, {
+  const commit = await GitApi.Commits.get(repositoryid, {
     commitid
   }, cxt);
 
-  const files = await GitCommitFilesApi.list(repositoryid, {
+  const files = await GitApi.Commits.Files.list(repositoryid, {
     commitid
   }, cxt);
 
   const parents = [];
 
   for (const parentId of commit.parents) {
-    const parentFiles = await GitCommitFilesApi.list(repositoryid, {
+    const parentFiles = await GitApi.Commits.Files.list(repositoryid, {
       commitid: parentId
     }, cxt);
 

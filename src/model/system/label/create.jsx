@@ -1,5 +1,5 @@
 import * as LabelApi from 'Api/namespace/system/label'
-import * as GitFiles from 'Api/git/files'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const create = async (info, input, cxt) => {
   const {parent, parent: {
@@ -16,7 +16,7 @@ export const create = async (info, input, cxt) => {
     }
   } = entity;
 
-  await GitFiles.stage(namespace.repositoryid, {
+  await GitApi.Files.stage(namespace.repositoryid, {
     fileid
   }, cxt);
 

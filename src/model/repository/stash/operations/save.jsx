@@ -1,4 +1,4 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import {stash} from '../stash'
 const uuidv4 = require('uuid/v4');
 

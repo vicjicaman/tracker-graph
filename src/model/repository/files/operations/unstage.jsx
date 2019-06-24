@@ -1,5 +1,5 @@
-import * as OperationApi from 'Api/system/operation'
-import * as GitFiles from 'Api/git/files'
+import * as OperationApi from '@nebulario/tracker-operation'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const unstage = async (file, {
   operation: {
@@ -12,7 +12,7 @@ export const unstage = async (file, {
     }, fileid} = file;
 
   const operation = async (cxt) => {
-    await GitFiles.unstage(repositoryid, {
+    await GitApi.Files.unstage(repositoryid, {
       fileid
     }, cxt);
   };

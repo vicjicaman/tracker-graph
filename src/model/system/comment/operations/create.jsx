@@ -1,7 +1,7 @@
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 import * as CommentApi from 'Api/namespace/system/comment'
-import * as GitFiles from 'Api/git/files'
-import * as Git from 'Api/git'
+import * as GitApi from '@nebulario/tracker-git'
+import * as Git from '@nebulario/tracker-git'
 
 import * as EntityOpsModel from 'Model/namespace/entity/operations'
 
@@ -28,7 +28,7 @@ export const create = async (info, {
       }
     } = entity;
 
-    await GitFiles.stage(namespace.repositoryid, {
+    await GitApi.Files.stage(namespace.repositoryid, {
       fileid
     }, cxt);
 

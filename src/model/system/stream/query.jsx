@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import * as StreamApi from 'Api/system/stream'
+import * as StreamApi from '@nebulario/tracker-stream'
 
 export const get = async (system, {
   streamid

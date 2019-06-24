@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import * as GitBranches from 'Api/git/branches'
-import * as GitApi from 'Api/git'
+import * as GitApi from '@nebulario/tracker-git'
 
 export const create = async (repository, {
   commitid
@@ -15,18 +14,18 @@ export const create = async (repository, {
     }, cxt);
   }
 
-  await GitBranches.create(repositoryid, {
+  await GitApi.Branches.create(repositoryid, {
     branchid,
     commitid
   }, cxt);
 
   if (baselineid) {
-    await GitBranches.create(repositoryid, {
+    await GitApi.Branches.create(repositoryid, {
       branchid: baselineid
     }, cxt);
   }
 
-  await GitBranches.checkout(repositoryid, {
+  await GitApi.Branches.checkout(repositoryid, {
     branchid
   }, cxt);
 

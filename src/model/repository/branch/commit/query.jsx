@@ -1,5 +1,5 @@
 import _ from "lodash";
-import * as GitCommitApi from 'Api/git/commits'
+import * as GitApi from '@nebulario/tracker-git'
 import * as Cache from 'Utils/cache'
 
 /*
@@ -20,7 +20,7 @@ export const get = async (branch, {
     keyid: "commit_" + commitid,
     hash: "forever"
   }, async function() {
-    return await GitCommitApi.get(repositoryid, {
+    return await GitApi.Commits.get(repositoryid, {
       commitid
     }, cxt);
   }, {}, cxt);
@@ -29,7 +29,7 @@ export const get = async (branch, {
     return null;
   }
 
-  const branches = await GitCommitApi.branches(repositoryid, {
+  const branches = await GitApi.Commits.branches(repositoryid, {
     commitid
   }, cxt);
 
@@ -52,7 +52,7 @@ export const list = async (branch, {}, cxt) => {
   const {branchid, baselineid, repository} = branch;
   const {baseid} = repository;
 
-  const res = await GitCommitApi.list(repository.repositoryid, {
+  const res = await GitApi.Commits.list(repository.repositoryid, {
     branchid,
     baselineid,
     commitid: baseid

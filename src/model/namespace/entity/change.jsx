@@ -1,4 +1,4 @@
-import * as GitFilesApi from 'Api/git/files'
+import * as GitFilesApi from '@nebulario/tracker-git'
 
 export const change = async (obj, fn, cxt) => {
 
@@ -17,7 +17,7 @@ export const change = async (obj, fn, cxt) => {
     }
   } = obj;
 
-  await GitFilesApi.stage(repositoryid, {
+  await GitApi.Files.stage(repositoryid, {
     fileid
   }, cxt);
 

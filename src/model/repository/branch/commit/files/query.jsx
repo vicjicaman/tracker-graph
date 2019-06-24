@@ -1,5 +1,5 @@
 import _ from "lodash";
-import * as GitCommitFilesApi from 'Api/git/commits/files'
+import * as GitApi from '@nebulario/tracker-git'
 import * as Cache from 'Utils/cache'
 
 export const prepare = (commit, {fileid, status, paths}) => ({
@@ -20,7 +20,7 @@ export const list = async (commit, {}, cxt) => {
     keyid: "commit_" + commitid + "_files",
     hash: "forever"
   }, async function() {
-    return await GitCommitFilesApi.list(repository.repositoryid, {
+    return await GitApi.Commits.Files.list(repository.repositoryid, {
       commitid
     }, cxt);
   }, {}, cxt);
@@ -49,7 +49,7 @@ export const current = async (file, {}, cxt) => {
     hash: "forever"
   }, async function() {
 
-    return await GitCommitFilesApi.revision(repository.repositoryid, {
+    return await GitApi.Commits.Files.revision(repository.repositoryid, {
       fileid,
       commitid
     }, cxt);
@@ -78,7 +78,7 @@ export const previous = async (file, {}, cxt) => {
     hash: "forever"
   }, async function() {
 
-    return await GitCommitFilesApi.revision(repository.repositoryid, {
+    return await GitApi.Commits.Files.revision(repository.repositoryid, {
       fileid,
       commitid: commitid + "~1"
     }, cxt);

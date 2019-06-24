@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import * as OperationApi from 'Api/system/operation'
+import * as OperationApi from '@nebulario/tracker-operation'
 
 export const get = async (system, args, cxt) => {
   const op = OperationApi.get(system, args, cxt);
